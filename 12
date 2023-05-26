@@ -1,0 +1,114 @@
+def a():
+    class Restaurant:
+        def __init__(self, name,type, flavors):
+            self.name=name
+            self.type=type
+            self.flavors=flavors
+        def describe_restaurant(self):
+            print(f"{self.name}, : {self.type}")
+
+        def open_restaurant(self):
+            print("open")
+
+    class IceCreamStand(Restaurant):
+        def flavor(self):
+            print(f'Вкусы : {self.flavors}')
+
+        def describe_restaurant(self):
+            print(f" Название : {self.name}", f" Тип : {self.type}", f" Вкус : {self.flavors}")
+
+
+    ice_stand = IceCreamStand( "name", "type", 'watermelon, vanilla, banana')
+    ice_stand.flavor()
+    ice_stand.describe_restaurant()
+
+
+def b():
+    class Restaurant:
+        def __init__(self, name,type):
+            self.name=name
+            self.type=type
+    class IceCreamStand(Restaurant):
+        def __init__(self, name, flavors, place, time, type):
+            self.name = name
+            self.flavors = flavors
+            self.place = place
+            self.time = time
+            self.type = type
+
+        def list(self):
+            print("Сорта:")
+            for flavor in self.flavors:
+                print("- " + flavor)
+
+        def add(self, flavor):
+            self.flavors.append(flavor)
+            print(f' {flavor} добавлено')
+
+        def remove(self, flavor):
+            if flavor in self.flavors:
+                self.flavors.remove(flavor)
+                print(f' {flavor} удалено')
+
+        def find(self, flavor):
+            if flavor in self.flavors:
+                print(f' {flavor} есть')
+            else:
+                print(f' {flavor} отсутсвует')
+
+        def describe(self):
+            print(f"Название {self.name}")
+            print(f"Место: {self.place}")
+            print(f"Время работы: {self.time}")
+
+        def show_Typesflavors(self):
+            print("Сорта:")
+            for types in self.type:
+                print("- " + types)
+
+    ice_stand = IceCreamStand("Name", ['watermelon', 'vanilla', 'banana'], 'place',
+                             '4 hours', ['type1', 'type2', 'type3'])
+
+    ice_stand.describe()
+    ice_stand.list()
+    ice_stand.show_Typesflavors()
+
+    ice_stand.find(input("Проверка:"))
+
+    ice_stand.add(input("Добавить"))
+
+    ice_stand.remove(input("Убрать"))
+
+
+def c():
+    import tkinter as tk
+    from tkinter import *
+    class Restaurant:
+        def __init__(self, name, type):
+            self.name = name
+            self.type = type
+
+    class IceCreamStand(Restaurant):
+        def __init__(self, name, flavors):
+            self.name = name
+            self.flavors = flavors
+            super().__init__(name, flavors)
+
+        def window(self):
+            menu = self.name
+            menu += "Types:\n"
+            for flavor in self.flavors:
+                menu += " " + flavor + "\n"
+            return menu
+
+    ice_stand = IceCreamStand(" ", ['watermelon', 'vanilla', 'banana'])
+
+    root = Tk()
+    root.title("Name")
+    root.geometry('100x100')
+    menu_label = tk.Label(root, text=ice_stand.window())
+    menu_label.pack()
+
+    root.mainloop()
+
+
