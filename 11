@@ -1,0 +1,62 @@
+def a():
+    class Restaurant:
+        def __init__(self, restaurant_name, cuisine_type):
+            self.restaurant_name = restaurant_name
+            self.cuisine_type = cuisine_type
+
+
+        def describe_restaurant(self):
+            print(f"{self.restaurant_name},  {self.cuisine_type}")
+
+        def open_restaurant(self):
+            print("open")
+
+
+    name = input("")
+    cuisine = input("")
+    newRestaurant = Restaurant(name, cuisine,)
+    print(newRestaurant.restaurant_name)
+    print(newRestaurant.cuisine_type)
+    newRestaurant.describe_restaurant()
+    newRestaurant.open_restaurant()
+
+
+    name1 = input("name1")
+    name2 = input("name2")
+    name3 = input("name3")
+    cuisine1 = input("cuisine1")
+    cuisine2 = input("cuisine2")
+    cuisine3 = input("cuisine3")
+    restaurant1 = Restaurant(name1, cuisine1)
+    restaurant2 = Restaurant(name2, cuisine2)
+    restaurant3 = Restaurant(name3, cuisine3)
+    restaurant1.describe_restaurant()
+    restaurant2.describe_restaurant()
+    restaurant3.describe_restaurant()
+
+
+def b():
+    class Restaurant:
+        def __init__(self, restaurant_name, cuisine_type, res_rating):
+            self.restaurant_name = restaurant_name
+            self.cuisine_type = cuisine_type
+            self.rating = res_rating
+
+        def describe_restaurant(self):
+            print(f"{self.restaurant_name},  {self.cuisine_type}")
+
+        def open_restaurant(self):
+            print("open")
+
+        def upd_rating(self, new_rating):
+            self.rating = new_rating
+            print(f"Ratihg {self.restaurant_name} has been updated to  {self.rating}.")
+    name = input("")
+    cuisine = input("")
+    restaurant1 = Restaurant(name , cuisine , 2)
+
+    print(f"Previous rating {restaurant1.restaurant_name}   {restaurant1.rating} ." )
+    restaurant1.upd_rating(4)
+
+    print(f"New rating {restaurant1.restaurant_name} : {restaurant1.rating}.")
+b()
