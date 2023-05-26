@@ -1,0 +1,22 @@
+def a():
+    giftcard=Image.open('card.jpg')
+    cropped=giftcard.crop((0,80,200,400))
+    cropped.save('cropped.jpg')
+
+def b():
+    cards={"Новый год": "card1.jpg", "День рождения": "card.jpg", "8 марта": "card2.jpg", "Пасха": "card3.jpg"}
+    d=input('Праздник?')
+    c=cards[str(d)]
+    image=Image.open(c)
+    image.show()
+def c():
+    from PIL import Image, ImageDraw, ImageFont
+    giftcard = 'card.jpg'
+    with Image.open(giftcard) as giftcard:
+        giftcard.load()
+    t=input('') + ' поздравляю!'
+    font=ImageFont.truetype('arial_bold.ttf',100)
+    draw=ImageDraw.Draw(giftcard)
+    draw.text((giftcard.width // 2 -125, 15),str(t), font=font, fill=('#FAACAC'))
+    giftcard.show()
+    giftcard.save('text.jpg')
