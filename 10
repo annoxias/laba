@@ -1,0 +1,73 @@
+import os
+from PIL import Image
+import csv
+import json
+def a():
+    #os.chdir('D:\kurochkina\9laba')
+    directory='D:\kurochkina\9laba'
+    d2=os.path.join(directory,"new")
+    if not os.path.isdir(d2):
+        os.mkdir(d2)
+    for filename in os.listdir(directory):
+        f=os.path.join(directory, filename)
+        if os.path.isfile(f) and filename.endswith(".png") or filename.endswith(".jpg"):
+            with Image.open(f) as image:
+                image.load()
+                filter = image.convert('L')
+                filter.save(os.path.join(d2,filename))
+
+
+def b():
+    print("Нужно купить:")
+    with open("1.csv", newline="") as file:
+        price=0
+        reader=csv.reader(file)
+        for row in reader:
+            w1=row[0]
+            w2=row[1]
+            w3=row[2]
+            c=int(w2)*int(w3)
+            price +=c
+            print(w1, "-", w2, "шт. за", w3, 'руб.')
+        print("Итоговая сумма:", price, "руб.")
+
+def c():
+    with open('l10.json', "r", encoding="utf-8") as file:
+        data = json.load(file)
+    products = {"products":[]}
+    a = input("Название?")
+    b = input("Цена?")
+    c = input("Вес?")
+    d = input("Наличие?")
+    products["products"].append({"name": a, "price": b, "weight": c, "availabale":d})
+    data["products"].extend(products["products"])
+    for i in data['products']:
+        print("Название:", i["name"])
+        print("Цена:" , i["price"])
+        print("Вес:" , i["weight"])
+        if i['availabale']:
+            print("В наличии")
+        else:
+            print("Не в наличии")
+    with open('l10.json', "w") as file:
+        json.dump(data,file,indent=4, ensure_ascii=False)
+
+def d():
+    d = {}
+    with open('sl.txt', "r") as file:
+        for line in file:
+            eng= line.split("-")[0].strip()
+            rus=line.split("-")[1].strip().split(",")
+            for i in rus:
+                i= i.strip()
+                if i in d.keys():
+                    d[i]=d[i] + "," + eng
+                else:
+                    d[i]=eng
+    with open('sl.txt', "w") as file:
+        for i in sorted(d.keys()):
+            file.writelines(f"{i} - {d[i]}\n")
+
+
+
+d()
